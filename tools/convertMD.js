@@ -8,7 +8,7 @@ function convert() {
     const data = fs.readFileSync(`docs/${f}`);
     const html = marked.marked.parse(data.toString());
     const fileName = f.split(".")[0];
-    const page = createTSX(html, fileName);
+    const page = createTSX(html.replace("<br>", "<br />"), fileName);
     fs.writeFileSync(`pages/articles/${fileName}.tsx`, page);
   });
 }
