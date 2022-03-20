@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps<Props> = (context) => {
     props: {
       articles: Object.values(data).map((d: any) => ({
         ...d,
-        path: "articles/" + d.fileId,
+        path: "articles/" + d.id,
       })),
     },
   };
