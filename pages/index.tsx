@@ -1,11 +1,13 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import fs from "fs";
+import dayjs from "dayjs";
 
 interface Article {
+  id: string;
   title: string;
   path: string;
-  birthtime: Date;
+  birthtime: string;
 }
 interface Props {
   articles: Article[];
@@ -36,10 +38,7 @@ const Home: NextPage<Props> = ({ articles }) => {
             <a href={a.path} style={{ fontSize: 20 }}>
               {a.title}
             </a>
-            <div style={{ fontSize: 12 }}>
-              {" created at "}
-              {a.birthtime}
-            </div>
+            <div style={{ fontSize: 12 }}>{a.birthtime}</div>
           </li>
         ))}
       </ul>
@@ -50,12 +49,20 @@ const Home: NextPage<Props> = ({ articles }) => {
 export const getStaticProps: GetStaticProps<Props> = (context) => {
   const rawData = fs.readFileSync("articles.json");
   const data = JSON.parse(rawData.toString());
+  const rawArticles = Object.values(data) as Article[];
+
   return {
     props: {
-      articles: Object.values(data).map((d: any) => ({
-        ...d,
-        path: "articles/" + d.id,
-      })),
+      articles: rawArticles
+        .sort(
+          (a1: Article, a2: Article) =>
+            new Date(a2.birthtime).getTime() - new Date(a1.birthtime).getTime()
+        )
+        .map((s: Article) => ({
+          ...s,
+          path: "articles/" + s.id,
+          birthtime: dayjs(s.birthtime).format("YYYY/MM/DD ddd"),
+        })),
     },
   };
 };

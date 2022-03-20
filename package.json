@@ -10,6 +10,7 @@
     "generate": "node tools/convertMD.js "
   },
   "dependencies": {
+    "dayjs": "^1.11.0",
     "marked": "^4.0.12",
     "next": "12.1.0",
     "react": "17.0.2",

@@ -22,6 +22,12 @@ function convert() {
         });
         return false;
       },
+      image(href, title, text) {
+        const w = text.split("x")[0];
+        const h = text.split("x")[1];
+
+        return `<img src=${href} alt="image" width="${w}" height="${h}">`;
+      },
     };
     marked.use({ renderer });
 
@@ -30,7 +36,7 @@ function convert() {
 
     const html = marked.parse(data.toString());
     const fileId = f.split(".")[0];
-    const page = createTSX(html.replace("<br>", "<br />"), title, headlines);
+    const page = createTSX(html, title, headlines);
     fs.writeFileSync(`pages/articles/${fileId}.tsx`, page);
 
     articleMetaData = {
@@ -56,7 +62,9 @@ function Article() {
         <Head>
             <title>${title}</title>
         </Head>
-        ${body}
+        <div 
+          dangerouslySetInnerHTML={{__html: \`${body}\`}}
+        />
       </main>
       <div
         style={{

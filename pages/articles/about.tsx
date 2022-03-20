@@ -7,7 +7,8 @@ function Article() {
         <Head>
             <title>About</title>
         </Head>
-        <h1 id="about">About</h1>
+        <div 
+          dangerouslySetInnerHTML={{__html: `<h1 id="about">About</h1>
 <blockquote>
 <p>何者にもなれない</p>
 </blockquote>
@@ -17,7 +18,8 @@ function Article() {
 <li>Software developer</li>
 </ul>
 <h2 id="skills-1">Skills</h2>
-
+`}}
+        />
       </main>
       <div
         style={{

@@ -7,15 +7,17 @@ function Article() {
         <Head>
             <title>Rust 学習ロードマップ</title>
         </Head>
-        <h1 id="rust-学習ロードマップ-1">Rust 学習ロードマップ</h1>
-<h2 id="rust-やるぜ-2">Rust やるぜ</h2>
+        <div 
+          dangerouslySetInnerHTML={{__html: `<h1 id="rust-学習ロードマップ-2">Rust 学習ロードマップ</h1>
+<h2 id="rust-やるぜ-3">Rust やるぜ</h2>
 <ul>
 <li>やるぜ</li>
 <li>やるぜ</li>
 </ul>
-<h3 id="やるんだぜ-2">やるんだぜ</h3>
-<h3 id="やるんだぜ-5">やるんだぜ</h3>
-
+<h3 id="やるんだぜ-3">やるんだぜ</h3>
+<h3 id="やるんだぜ-7">やるんだぜ</h3>
+`}}
+        />
       </main>
       <div
         style={{
@@ -28,7 +30,7 @@ function Article() {
         <div style={{ position: "fixed" }}>
           <h3>目次</h3>
           <ul style={{ marginLeft: "-1em" }}>
-            <li><a href="#rust-やるぜ">Rust やるぜ</a></li><li><a href="#やるんだぜ">やるんだぜ</a></li><li><a href="#やるんだぜ-3">やるんだぜ</a></li>
+            <li><a href="#rust-やるぜ">Rust やるぜ</a></li><li><a href="#やるんだぜ">やるんだぜ</a></li><li><a href="#やるんだぜ-4">やるんだぜ</a></li>
           </ul>
         </div>
       </div>
