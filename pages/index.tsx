@@ -15,7 +15,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ articles }) => {
   return (
-    <main>
+    <>
       <Head>
         <title>Nara in Tokyo</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -42,7 +42,7 @@ const Home: NextPage<Props> = ({ articles }) => {
           </li>
         ))}
       </ul>
-    </main>
+    </>
   );
 };
 

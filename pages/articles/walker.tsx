@@ -3,7 +3,7 @@ import Head from "next/head";
 function Article() {
   return (
     <div style={{ display: "flex" }}>
-      <main style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
+      <div style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
         <Head>
             <title>歩くのススメ</title>
         </Head>
@@ -13,7 +13,7 @@ function Article() {
 <p>飽きっぽい私にとって、数少ない長年の趣味に「歩くこと」がある。<br>敢えて「散歩」や「ウォーキング」としていないのは、</p>
 `}}
         />
-      </main>
+      </div>
       <div
         style={{
           flexGrow: 0.2,

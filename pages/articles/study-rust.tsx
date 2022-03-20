@@ -3,7 +3,7 @@ import Head from "next/head";
 function Article() {
   return (
     <div style={{ display: "flex" }}>
-      <main style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
+      <div style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
         <Head>
             <title>Rust 学習ロードマップ</title>
         </Head>
@@ -18,7 +18,7 @@ function Article() {
 <h3 id="やるんだぜ-7">やるんだぜ</h3>
 `}}
         />
-      </main>
+      </div>
       <div
         style={{
           flexGrow: 0.2,

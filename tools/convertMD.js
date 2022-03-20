@@ -58,14 +58,14 @@ import Head from "next/head";
 function Article() {
   return (
     <div style={{ display: "flex" }}>
-      <main style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
+      <div style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
         <Head>
             <title>${title}</title>
         </Head>
         <div 
           dangerouslySetInnerHTML={{__html: \`${body}\`}}
         />
-      </main>
+      </div>
       <div
         style={{
           flexGrow: 0.2,

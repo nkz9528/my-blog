@@ -3,7 +3,7 @@ import Head from "next/head";
 function Article() {
   return (
     <div style={{ display: "flex" }}>
-      <main style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
+      <div style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
         <Head>
             <title>About</title>
         </Head>
@@ -20,7 +20,7 @@ function Article() {
 <h2 id="skills-1">Skills</h2>
 `}}
         />
-      </main>
+      </div>
       <div
         style={{
           flexGrow: 0.2,
