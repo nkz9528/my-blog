@@ -5,6 +5,7 @@ import fs from "fs";
 interface Article {
   title: string;
   path: string;
+  birthtime: Date;
 }
 interface Props {
   articles: Article[];
@@ -32,7 +33,13 @@ const Home: NextPage<Props> = ({ articles }) => {
       <ul>
         {articles.map((a) => (
           <li key={a.title}>
-            <a href={a.path}>{a.title}</a>
+            <a href={a.path} style={{ fontSize: 20 }}>
+              {a.title}
+            </a>
+            <div style={{ fontSize: 12 }}>
+              {" created at "}
+              {a.birthtime}
+            </div>
           </li>
         ))}
       </ul>
@@ -41,13 +48,13 @@ const Home: NextPage<Props> = ({ articles }) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = (context) => {
-  const articles = fs.readdirSync("pages/articles");
-
+  const rawData = fs.readFileSync("articles.json");
+  const data = JSON.parse(rawData.toString());
   return {
     props: {
-      articles: articles.map((a) => ({
-        title: a.split(".")[0],
-        path: `articles/${a.split(".")[0]}`,
+      articles: Object.values(data).map((d: any) => ({
+        ...d,
+        path: "articles/" + d.fileId,
       })),
     },
   };

@@ -5,16 +5,11 @@ function Article() {
     <div style={{ display: "flex" }}>
       <main style={{ flexGrow: 0.8, flexBasis: 0.8 }}>
         <Head>
-            <title>Rust 学習ロードマップ</title>
+            <title>歩くのススメ</title>
         </Head>
-        <h1 id="rust-学習ロードマップ-1">Rust 学習ロードマップ</h1>
-<h2 id="rust-やるぜ-2">Rust やるぜ</h2>
-<ul>
-<li>やるぜ</li>
-<li>やるぜ</li>
-</ul>
-<h3 id="やるんだぜ-2">やるんだぜ</h3>
-<h3 id="やるんだぜ-5">やるんだぜ</h3>
+        <h1 id="歩くのススメ-2">歩くのススメ</h1>
+<h2 id="歩くのは楽しい-3">歩くのは楽しい</h2>
+<p>飽きっぽい私にとって、数少ない長年の趣味に「歩くこと」がある。<br />敢えて「散歩」や「ウォーキング」としていないのは、</p>
 
       </main>
       <div
@@ -28,7 +23,7 @@ function Article() {
         <div style={{ position: "fixed" }}>
           <h3>目次</h3>
           <ul style={{ marginLeft: "-1em" }}>
-            <li><a href="#rust-やるぜ">Rust やるぜ</a></li><li><a href="#やるんだぜ">やるんだぜ</a></li><li><a href="#やるんだぜ-3">やるんだぜ</a></li>
+            <li><a href="#歩くのは楽しい">歩くのは楽しい</a></li>
           </ul>
         </div>
       </div>
