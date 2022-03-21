@@ -1,4 +1,10 @@
-const fs = require("fs");
+import fs from "fs";
+import { Slugger } from "marked";
+
+interface Headline {
+  id: string;
+  text: string;
+}
 
 function convert() {
   const files = fs.readdirSync("docs");
@@ -6,38 +12,14 @@ function convert() {
   let articleMetaData = {};
 
   for (const f of files) {
-    const { marked } = require("marked");
+    const rawData = fs.readFileSync(`docs/${f}`);
+    const { html, title, headlines } = parseMD(rawData);
 
-    let title = "";
-    let headlines = [];
-    const renderer = {
-      heading(text, level, raw, slug) {
-        if (headlines.length == 0 && level === 1) {
-          title = text;
-          return false;
-        }
-        headlines.push({
-          id: slug.slug(text),
-          text,
-        });
-        return false;
-      },
-      image(href, title, text) {
-        const w = text.split("x")[0];
-        const h = text.split("x")[1];
-
-        return `<img src=${href} alt="image" width="${w}" height="${h}">`;
-      },
-    };
-    marked.use({ renderer });
-
-    const data = fs.readFileSync(`docs/${f}`);
     const { birthtime, mtime } = fs.statSync(`docs/${f}`);
 
-    const html = marked.parse(data.toString());
     const fileId = f.split(".")[0];
-    const page = createTSX(html, title, headlines);
-    fs.writeFileSync(`pages/articles/${fileId}.tsx`, page);
+    const pageComp = createTSX(html, title, headlines);
+    fs.writeFileSync(`pages/articles/${fileId}.tsx`, pageComp);
 
     articleMetaData = {
       ...articleMetaData,
@@ -53,7 +35,41 @@ function convert() {
   fs.writeFileSync("articles.json", JSON.stringify(articleMetaData));
 }
 
-const createTSX = (body, title, headlines) => `
+function parseMD(rawData: Buffer) {
+  const { marked } = require("marked");
+  let title = "";
+  let headlines: Headline[] = [];
+
+  const renderer = {
+    heading(text: string, level: number, raw: string, slug: Slugger) {
+      if (headlines.length == 0 && level === 1) {
+        title = text;
+        return false;
+      }
+      headlines.push({
+        id: slug.slug(text),
+        text,
+      });
+      return false;
+    },
+    image(href: string, title: string, text: string) {
+      const w = text.split("x")[0];
+      const h = text.split("x")[1];
+
+      return `<img src=${href} alt="image" width="${w}" height="${h}">`;
+    },
+  };
+  marked.use({ renderer });
+  const html = marked.parse(rawData.toString());
+
+  return {
+    html,
+    title,
+    headlines,
+  };
+}
+
+const createTSX = (body: string, title: string, headlines: Headline[]) => `
 import Head from "next/head";
 function Article() {
   return (
