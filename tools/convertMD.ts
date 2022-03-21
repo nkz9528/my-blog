@@ -131,6 +131,8 @@ async function statFile(
       const firstLog = logs[logs.length - 1] as Log;
       const lastLog = logs[0] as Log;
 
+      console.log(logs);
+
       res({
         birthtime: firstLog.date,
         mtime: lastLog.date,
