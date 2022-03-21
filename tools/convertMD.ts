@@ -126,23 +126,31 @@ export default Article;
 async function statFile(
   path: string
 ): Promise<{ birthtime: string; mtime: string }> {
-  const gitSimple = simpleGit("");
-  const response = gitSimple.log({ file: path, from: "origin/main" });
+  const gitSimple = simpleGit();
+  const response = gitSimple.raw([
+    "log",
+    "--name-only",
+    '--format="%ad"',
+    "origin/main",
+    "-p",
+    "docs/about.md",
+  ]);
 
   return new Promise((res) => {
     response.then((val) => {
-      const logs = val.all as any[];
-      const firstLog = logs[logs.length - 1] as Log;
-      const lastLog = logs[0] as Log;
-
-      console.log(logs);
+      const logStr = val as string;
+      const commitDates = logStr
+        .split("\n")
+        .filter((f) => f.length > 0)
+        .filter((f, i) => i % 2 === 0)
+        .map((l) => l.replace(/"/g, ""));
 
       res({
-        birthtime: firstLog.date,
-        mtime: lastLog.date,
+        birthtime: commitDates[0],
+        mtime: commitDates[commitDates.length - 1],
       });
     });
   });
 }
 
-convert();
+// convert();
