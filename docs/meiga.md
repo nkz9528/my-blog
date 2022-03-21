@@ -2,4 +2,4 @@
 
 ## 美しい...
 
-![800](https://animanch.com/wp/wp-content/uploads/thumbnail/20375625.jpg)
+![200](https://animanch.com/wp/wp-content/uploads/thumbnail/20375625.jpg)
