@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 
