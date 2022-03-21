@@ -133,7 +133,7 @@ async function statFile(
     '--format="%ad"',
     "origin/main",
     "-p",
-    "docs/about.md",
+    path,
   ]);
 
   return new Promise((res) => {
@@ -145,6 +145,8 @@ async function statFile(
         .filter((f, i) => i % 2 === 0)
         .map((l) => l.replace(/"/g, ""));
 
+      console.log(commitDates);
+
       res({
         birthtime: commitDates[0],
         mtime: commitDates[commitDates.length - 1],
@@ -153,4 +155,4 @@ async function statFile(
   });
 }
 
-// convert();
+convert();
