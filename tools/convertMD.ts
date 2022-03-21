@@ -1,5 +1,6 @@
 import fs from "fs";
 import { Slugger } from "marked";
+import simpleGit from "simple-git";
 
 interface Headline {
   id: string;
@@ -20,6 +21,13 @@ function convert() {
     const fileId = f.split(".")[0];
     const pageComp = createTSX(html, title, headlines);
     fs.writeFileSync(`pages/articles/${fileId}.tsx`, pageComp);
+
+    const gitSimple = simpleGit();
+    const fileLog = gitSimple.log({ format: "%aD", file: `docs/${f}` });
+    fileLog.then((val) => {
+      const logs = val.all;
+      console.log(logs);
+    });
 
     articleMetaData = {
       ...articleMetaData,
