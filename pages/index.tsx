@@ -52,7 +52,6 @@ export const getStaticProps: GetStaticProps<Props> = (context) => {
   const data = JSON.parse(rawData.toString());
   const rawArticles = Object.values(data) as Article[];
   dayjs.extend(timezone);
-  dayjs.tz("Asia/Tokyo");
 
   return {
     props: {
@@ -64,7 +63,7 @@ export const getStaticProps: GetStaticProps<Props> = (context) => {
         .map((s: Article) => ({
           ...s,
           path: "articles/" + s.id,
-          birthtime: dayjs(s.birthtime).format("YYYY/MM/DD ddd"),
+          birthtime: dayjs(s.birthtime, "Asia/Tokyo").format("YYYY/MM/DD ddd"),
         })),
     },
   };
