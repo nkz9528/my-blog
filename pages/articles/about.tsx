@@ -18,6 +18,23 @@ function Article() {
 <li>Software developer</li>
 </ul>
 <h2 id="skills-1">Skills</h2>
+<ul>
+<li><p>language</p>
+<ul>
+<li>JavaScript</li>
+<li>TypeScript</li>
+<li>C#</li>
+<li>Python</li>
+</ul>
+</li>
+<li><p>library</p>
+<ul>
+<li>React.js</li>
+<li>Redux</li>
+<li>Vue.js</li>
+</ul>
+</li>
+</ul>
 `}}
         />
       </div>

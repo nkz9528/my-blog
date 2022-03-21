@@ -7,7 +7,16 @@ interface Headline {
   text: string;
 }
 
-function convert() {
+interface Log {
+  hash: string;
+  date: string;
+  message: string;
+  refs: string;
+  body: string;
+  author_name: string;
+}
+
+async function convert() {
   const files = fs.readdirSync("docs");
 
   let articleMetaData = {};
@@ -16,18 +25,11 @@ function convert() {
     const rawData = fs.readFileSync(`docs/${f}`);
     const { html, title, headlines } = parseMD(rawData);
 
-    const { birthtime, mtime } = fs.statSync(`docs/${f}`);
+    const { birthtime, mtime } = await statFile(`docs/${f}`);
 
     const fileId = f.split(".")[0];
     const pageComp = createTSX(html, title, headlines);
     fs.writeFileSync(`pages/articles/${fileId}.tsx`, pageComp);
-
-    const gitSimple = simpleGit();
-    const fileLog = gitSimple.log({ format: "%aD", file: `docs/${f}` });
-    fileLog.then((val) => {
-      const logs = val.all;
-      console.log(logs);
-    });
 
     articleMetaData = {
       ...articleMetaData,
@@ -116,5 +118,25 @@ export const config = {
 };
 export default Article;
 `;
+
+async function statFile(
+  path: string
+): Promise<{ birthtime: string; mtime: string }> {
+  const gitSimple = simpleGit();
+  const response = gitSimple.log({ format: "%aD", file: path });
+
+  return new Promise((res) => {
+    response.then((val) => {
+      const logs = val.all as any[];
+      const firstLog = logs[logs.length - 1] as Log;
+      const lastLog = logs[0] as Log;
+
+      res({
+        birthtime: firstLog.date,
+        mtime: lastLog.date,
+      });
+    });
+  });
+}
 
 convert();

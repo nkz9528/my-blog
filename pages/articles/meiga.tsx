@@ -10,7 +10,7 @@ function Article() {
         <div 
           dangerouslySetInnerHTML={{__html: `<h1 id="漫画史に残る名画-1">漫画史に残る名画</h1>
 <h2 id="美しい-2">美しい...</h2>
-<p><img src=https://animanch.com/wp/wp-content/uploads/thumbnail/20375625.jpg alt="image" width="800" height="undefined"></p>
+<p><img src=https://animanch.com/wp/wp-content/uploads/thumbnail/20375625.jpg alt="image" width="200" height="undefined"></p>
 `}}
         />
       </div>
