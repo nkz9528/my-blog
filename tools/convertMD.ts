@@ -29,6 +29,10 @@ async function convert() {
 
     const fileId = f.split(".")[0];
     const pageComp = createTSX(html, title, headlines);
+
+    if (!fs.existsSync("pages/articles")) {
+      fs.mkdirSync("pages/articles");
+    }
     fs.writeFileSync(`pages/articles/${fileId}.tsx`, pageComp);
 
     articleMetaData = {
