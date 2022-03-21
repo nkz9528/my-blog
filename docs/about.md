@@ -8,3 +8,15 @@
 - Software developer
 
 ## Skills
+
+- language
+
+  - JavaScript
+  - TypeScript
+  - C#
+  - Python
+
+- library
+  - React.js
+  - Redux
+  - Vue.js
