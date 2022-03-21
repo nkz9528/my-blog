@@ -155,4 +155,9 @@ async function statFile(
   });
 }
 
+const gitSimple = simpleGit();
+
+const a = gitSimple.remote(["-v"]);
+a.then((val) => console.log(val));
+
 convert();
