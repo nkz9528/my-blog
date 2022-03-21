@@ -126,8 +126,8 @@ export default Article;
 async function statFile(
   path: string
 ): Promise<{ birthtime: string; mtime: string }> {
-  const gitSimple = simpleGit();
-  const response = gitSimple.log({ format: "%aD", file: path });
+  const gitSimple = simpleGit("");
+  const response = gitSimple.log({ file: path, from: "origin/main" });
 
   return new Promise((res) => {
     response.then((val) => {
