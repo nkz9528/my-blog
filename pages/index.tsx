@@ -2,6 +2,7 @@ import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import fs from "fs";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
 
 interface Article {
   id: string;
@@ -50,6 +51,8 @@ export const getStaticProps: GetStaticProps<Props> = (context) => {
   const rawData = fs.readFileSync("articles.json");
   const data = JSON.parse(rawData.toString());
   const rawArticles = Object.values(data) as Article[];
+  dayjs.extend(timezone);
+  dayjs.tz("Asia/Tokyo");
 
   return {
     props: {
